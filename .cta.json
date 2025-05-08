@@ -1,0 +1,17 @@
+{
+  "framework": "react",
+  "typescript": true,
+  "projectName": "react-boilerplate",
+  "mode": "file-router",
+  "tailwind": true,
+  "packageManager": "npm",
+  "toolchain": "biome",
+  "variableValues": {},
+  "git": true,
+  "version": 1,
+  "existingAddOns": [
+    "form",
+    "tanstack-query",
+    "table"
+  ]
+}
