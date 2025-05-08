@@ -10,8 +10,8 @@
   "git": true,
   "version": 1,
   "existingAddOns": [
-    "form",
-    "tanstack-query",
-    "table"
+    "shadcn",
+    "table",
+    "tanstack-query"
   ]
 }
