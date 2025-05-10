@@ -11,10 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as CountryQueryOpionsImport } from './routes/countryQueryOpions'
 import { Route as IndexImport } from './routes/index'
 import { Route as DemoTanstackQueryImport } from './routes/demo.tanstack-query'
+import { Route as CountryCountryCodeImport } from './routes/country/$countryCode'
 
 // Create/Update Routes
+
+const CountryQueryOpionsRoute = CountryQueryOpionsImport.update({
+  id: '/countryQueryOpions',
+  path: '/countryQueryOpions',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -28,6 +36,12 @@ const DemoTanstackQueryRoute = DemoTanstackQueryImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const CountryCountryCodeRoute = CountryCountryCodeImport.update({
+  id: '/country/$countryCode',
+  path: '/country/$countryCode',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -37,6 +51,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/countryQueryOpions': {
+      id: '/countryQueryOpions'
+      path: '/countryQueryOpions'
+      fullPath: '/countryQueryOpions'
+      preLoaderRoute: typeof CountryQueryOpionsImport
+      parentRoute: typeof rootRoute
+    }
+    '/country/$countryCode': {
+      id: '/country/$countryCode'
+      path: '/country/$countryCode'
+      fullPath: '/country/$countryCode'
+      preLoaderRoute: typeof CountryCountryCodeImport
       parentRoute: typeof rootRoute
     }
     '/demo/tanstack-query': {
@@ -53,36 +81,59 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/countryQueryOpions': typeof CountryQueryOpionsRoute
+  '/country/$countryCode': typeof CountryCountryCodeRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/countryQueryOpions': typeof CountryQueryOpionsRoute
+  '/country/$countryCode': typeof CountryCountryCodeRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/countryQueryOpions': typeof CountryQueryOpionsRoute
+  '/country/$countryCode': typeof CountryCountryCodeRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/demo/tanstack-query'
+  fullPaths:
+    | '/'
+    | '/countryQueryOpions'
+    | '/country/$countryCode'
+    | '/demo/tanstack-query'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/demo/tanstack-query'
-  id: '__root__' | '/' | '/demo/tanstack-query'
+  to:
+    | '/'
+    | '/countryQueryOpions'
+    | '/country/$countryCode'
+    | '/demo/tanstack-query'
+  id:
+    | '__root__'
+    | '/'
+    | '/countryQueryOpions'
+    | '/country/$countryCode'
+    | '/demo/tanstack-query'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CountryQueryOpionsRoute: typeof CountryQueryOpionsRoute
+  CountryCountryCodeRoute: typeof CountryCountryCodeRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CountryQueryOpionsRoute: CountryQueryOpionsRoute,
+  CountryCountryCodeRoute: CountryCountryCodeRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
 }
 
@@ -97,11 +148,19 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/countryQueryOpions",
+        "/country/$countryCode",
         "/demo/tanstack-query"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/countryQueryOpions": {
+      "filePath": "countryQueryOpions.tsx"
+    },
+    "/country/$countryCode": {
+      "filePath": "country/$countryCode.tsx"
     },
     "/demo/tanstack-query": {
       "filePath": "demo.tanstack-query.tsx"
