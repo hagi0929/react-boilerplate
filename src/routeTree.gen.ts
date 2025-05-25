@@ -11,18 +11,11 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as CountryQueryOpionsImport } from './routes/countryQueryOpions'
 import { Route as IndexImport } from './routes/index'
-import { Route as DemoTanstackQueryImport } from './routes/demo.tanstack-query'
+import { Route as CountryIndexImport } from './routes/country/index'
 import { Route as CountryCountryCodeImport } from './routes/country/$countryCode'
 
 // Create/Update Routes
-
-const CountryQueryOpionsRoute = CountryQueryOpionsImport.update({
-  id: '/countryQueryOpions',
-  path: '/countryQueryOpions',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -30,9 +23,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DemoTanstackQueryRoute = DemoTanstackQueryImport.update({
-  id: '/demo/tanstack-query',
-  path: '/demo/tanstack-query',
+const CountryIndexRoute = CountryIndexImport.update({
+  id: '/country/',
+  path: '/country/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,13 +46,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/countryQueryOpions': {
-      id: '/countryQueryOpions'
-      path: '/countryQueryOpions'
-      fullPath: '/countryQueryOpions'
-      preLoaderRoute: typeof CountryQueryOpionsImport
-      parentRoute: typeof rootRoute
-    }
     '/country/$countryCode': {
       id: '/country/$countryCode'
       path: '/country/$countryCode'
@@ -67,11 +53,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CountryCountryCodeImport
       parentRoute: typeof rootRoute
     }
-    '/demo/tanstack-query': {
-      id: '/demo/tanstack-query'
-      path: '/demo/tanstack-query'
-      fullPath: '/demo/tanstack-query'
-      preLoaderRoute: typeof DemoTanstackQueryImport
+    '/country/': {
+      id: '/country/'
+      path: '/country'
+      fullPath: '/country'
+      preLoaderRoute: typeof CountryIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -81,60 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/countryQueryOpions': typeof CountryQueryOpionsRoute
   '/country/$countryCode': typeof CountryCountryCodeRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/country': typeof CountryIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/countryQueryOpions': typeof CountryQueryOpionsRoute
   '/country/$countryCode': typeof CountryCountryCodeRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/country': typeof CountryIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/countryQueryOpions': typeof CountryQueryOpionsRoute
   '/country/$countryCode': typeof CountryCountryCodeRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/country/': typeof CountryIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/countryQueryOpions'
-    | '/country/$countryCode'
-    | '/demo/tanstack-query'
+  fullPaths: '/' | '/country/$countryCode' | '/country'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/countryQueryOpions'
-    | '/country/$countryCode'
-    | '/demo/tanstack-query'
-  id:
-    | '__root__'
-    | '/'
-    | '/countryQueryOpions'
-    | '/country/$countryCode'
-    | '/demo/tanstack-query'
+  to: '/' | '/country/$countryCode' | '/country'
+  id: '__root__' | '/' | '/country/$countryCode' | '/country/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CountryQueryOpionsRoute: typeof CountryQueryOpionsRoute
   CountryCountryCodeRoute: typeof CountryCountryCodeRoute
-  DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  CountryIndexRoute: typeof CountryIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CountryQueryOpionsRoute: CountryQueryOpionsRoute,
   CountryCountryCodeRoute: CountryCountryCodeRoute,
-  DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  CountryIndexRoute: CountryIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -148,22 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/countryQueryOpions",
         "/country/$countryCode",
-        "/demo/tanstack-query"
+        "/country/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/countryQueryOpions": {
-      "filePath": "countryQueryOpions.tsx"
-    },
     "/country/$countryCode": {
       "filePath": "country/$countryCode.tsx"
     },
-    "/demo/tanstack-query": {
-      "filePath": "demo.tanstack-query.tsx"
+    "/country/": {
+      "filePath": "country/index.tsx"
     }
   }
 }
