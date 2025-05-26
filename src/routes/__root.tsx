@@ -19,5 +19,5 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			<TanStackRouterDevtools />
 			<ReactQueryDevtools buttonPosition="bottom-right" />
 		</>
-	),
+	)
 });

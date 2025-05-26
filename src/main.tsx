@@ -8,6 +8,7 @@ import "./shared/styles/styles.css";
 const queryClient = new QueryClient();
 const router = createRouter({
 	routeTree,
+	scrollRestoration: true,
 	context: { queryClient },
 });
 
