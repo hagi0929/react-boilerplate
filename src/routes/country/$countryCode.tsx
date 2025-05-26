@@ -1,3 +1,4 @@
+import CountryDetails from "@/features/country-details/country-details";
 import {
 	ErrorComponent,
 	type ErrorComponentProps,
@@ -8,7 +9,7 @@ import {
 
 export const Route = createFileRoute("/country/$countryCode")({
 	errorComponent: PostErrorComponent,
-	component: PostComponent,
+	component: CountryDetails,
 });
 
 export function PostErrorComponent({ error }: ErrorComponentProps) {
@@ -20,13 +21,3 @@ export function PostErrorComponent({ error }: ErrorComponentProps) {
 	);
 }
 
-function PostComponent() {
-	const postId = Route.useParams().postId;
-
-	return (
-		<div className="space-y-2">
-			<h4 className="text-xl font-bold underline">{"post.title"}</h4>
-			<div className="text-sm">{"post.body"}</div>
-		</div>
-	);
-}
